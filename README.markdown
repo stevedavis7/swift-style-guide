@@ -199,19 +199,19 @@ In particular, when adding protocol conformance to a model, prefer adding a sepa
 ```swift
 class MyViewController: UIViewController 
 {
-  // class stuff here
+    // class stuff here
 }
 
 // MARK: - UITableViewDataSource
 extension MyViewController: UITableViewDataSource 
 {
-  // table view data source methods
+    // table view data source methods
 }
 
 // MARK: - UIScrollViewDelegate
 extension MyViewController: UIScrollViewDelegate 
 {
-  // scroll view delegate methods
+    // scroll view delegate methods
 }
 ```
 
@@ -219,7 +219,7 @@ extension MyViewController: UIScrollViewDelegate
 ```swift
 class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate 
 {
-  // all methods
+    // all methods
 }
 ```
 
@@ -237,7 +237,7 @@ Aspirational methods not directly associated with the tutorial whose implementat
 ```swift
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
 {
-  return Database.contacts.count
+    return Database.contacts.count
 }
 ```
 
@@ -245,20 +245,20 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 ```swift
 override func didReceiveMemoryWarning() 
 {
-  super.didReceiveMemoryWarning()
-  // Dispose of any resources that can be recreated.
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
 }
 
 override func numberOfSections(in tableView: UITableView) -> Int 
 {
-  // #warning Incomplete implementation, return the number of sections
-  return 1
+    // #warning Incomplete implementation, return the number of sections
+    return 1
 }
 
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
 {
-  // #warning Incomplete implementation, return the number of rows
-  return Database.contacts.count
+    // #warning Incomplete implementation, return the number of rows
+    return Database.contacts.count
 }
 
 ```
@@ -530,7 +530,7 @@ Mirror the style of function declarations at call sites. Calls that fit on a sin
 let success = reticulateSplines(splines)
 ```
 
-If the call site must be wrapped, put each parameter on a new line, indented one additional level:
+If the call site must be wrapped, put each parameter on a new line, indented:
 
 ```swift
 let success = reticulateSplines(
