@@ -665,7 +665,8 @@ textContainer?.textLabel?.setNeedsDisplay()
 Use optional binding when it's more convenient to unwrap once and perform multiple operations:
 
 ```swift
-if let textContainer = textContainer {
+if let textContainer = textContainer 
+{
     // do many things with textContainer
 }
 ```
