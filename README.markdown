@@ -116,7 +116,7 @@ let myClass = MyModule.UsefulClass()
 
 ### Delegates
 
-When creating custom delegate methods, an unnamed first parameter should be the delegate source. (UIKit contains numerous examples of this.)
+When creating custom delegate methods, an unnamed first parameter should be the delegate source. (AppKit contains numerous examples of this.)
 
 **Preferred**:
 ```swift
@@ -192,24 +192,28 @@ In particular, when adding protocol conformance to a model, prefer adding a sepa
 
 **Preferred**:
 ```swift
-class MyViewController: UIViewController {
+class MyViewController: UIViewController 
+{
   // class stuff here
 }
 
 // MARK: - UITableViewDataSource
-extension MyViewController: UITableViewDataSource {
+extension MyViewController: UITableViewDataSource 
+{
   // table view data source methods
 }
 
 // MARK: - UIScrollViewDelegate
-extension MyViewController: UIScrollViewDelegate {
+extension MyViewController: UIScrollViewDelegate 
+{
   // scroll view delegate methods
 }
 ```
 
 **Not Preferred**:
 ```swift
-class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate {
+class MyViewController: UIViewController, UITableViewDataSource, UIScrollViewDelegate 
+{
   // all methods
 }
 ```
@@ -226,24 +230,28 @@ Aspirational methods not directly associated with the tutorial whose implementat
 
 **Preferred**:
 ```swift
-override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
+{
   return Database.contacts.count
 }
 ```
 
 **Not Preferred**:
 ```swift
-override func didReceiveMemoryWarning() {
+override func didReceiveMemoryWarning() 
+{
   super.didReceiveMemoryWarning()
   // Dispose of any resources that can be recreated.
 }
 
-override func numberOfSections(in tableView: UITableView) -> Int {
+override func numberOfSections(in tableView: UITableView) -> Int 
+{
   // #warning Incomplete implementation, return the number of sections
   return 1
 }
 
-override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int 
+{
   // #warning Incomplete implementation, return the number of rows
   return Database.contacts.count
 }
@@ -255,8 +263,8 @@ Import only the modules a source file requires. For example, don't import `UIKit
 
 **Preferred**:
 ```
-import UIKit
-var view: UIView
+import AppKit
+var view: NSView
 var deviceModels: [String]
 ```
 
@@ -268,15 +276,15 @@ var deviceModels: [String]
 
 **Not Preferred**:
 ```
-import UIKit
+import AppKit
 import Foundation
-var view: UIView
+var view: NSView
 var deviceModels: [String]
 ```
 
 **Not Preferred**:
 ```
-import UIKit
+import AppKit
 var deviceModels: [String]
 ```
 
@@ -286,25 +294,26 @@ var deviceModels: [String]
 
 ![Xcode indent settings](screens/indentation.png)
 
-* Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the same line as the statement but close on a new line.
+* Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the next line after statement and close on a new line.
 * Tip: You can re-indent by selecting some code (or **Command-A** to select all) and then **Control-I** (or **Editor ▸ Structure ▸ Re-Indent** in the menu). Some of the Xcode template code will have 4-space tabs hard coded, so this is a good way to fix that.
 
 **Preferred**:
 ```swift
-if user.isHappy {
+if user.isHappy
+{
   // Do something
-} else {
+}
+else 
+{
   // Do something else
 }
 ```
 
 **Not Preferred**:
 ```swift
-if user.isHappy
-{
+if user.isHappy {
   // Do something
-}
-else {
+} else {
   // Do something else
 }
 ```
@@ -317,14 +326,16 @@ else {
 
 **Preferred**:
 ```swift
-class TestDatabase: Database {
+class TestDatabase: Database
+{
   var data: [String: CGFloat] = ["A": 1.2, "B": 3.2]
 }
 ```
 
 **Not Preferred**:
 ```swift
-class TestDatabase : Database {
+class TestDatabase : Database 
+{
   var data :[String:CGFloat] = ["A" : 1.2, "B":3.2]
 }
 ```
@@ -358,38 +369,48 @@ Sometimes, things should be structs but need to conform to `AnyObject` or are hi
 Here's an example of a well-styled class definition:
 
 ```swift
-class Circle: Shape {
+class Circle: Shape 
+{
   var x: Int, y: Int
   var radius: Double
-  var diameter: Double {
-    get {
+  var diameter: Double 
+  {
+    get 
+    {
       return radius * 2
     }
-    set {
+    set 
+    {
       radius = newValue / 2
     }
   }
 
-  init(x: Int, y: Int, radius: Double) {
+  init(x: Int, y: Int, radius: Double) 
+  {
     self.x = x
     self.y = y
     self.radius = radius
   }
 
-  convenience init(x: Int, y: Int, diameter: Double) {
+  convenience init(x: Int, y: Int, diameter: Double) 
+  {
     self.init(x: x, y: y, radius: diameter / 2)
   }
 
-  override func area() -> Double {
+  override func area() -> Double 
+  {
     return Double.pi * radius * radius
   }
 }
 
-extension Circle: CustomStringConvertible {
-  var description: String {
+extension Circle: CustomStringConvertible 
+{
+  var description: String 
+  {
     return "center = \(centerString) area = \(area())"
   }
-  private var centerString: String {
+  private var centerString: String 
+  {
     return "(\(x),\(y))"
   }
 }
@@ -417,15 +438,18 @@ For conciseness, if a computed property is read-only, omit the get clause. The g
 
 **Preferred**:
 ```swift
-var diameter: Double {
+var diameter: Double 
+{
   return radius * 2
 }
 ```
 
 **Not Preferred**:
 ```swift
-var diameter: Double {
-  get {
+var diameter: Double 
+{
+  get 
+  {
     return radius * 2
   }
 }
@@ -437,9 +461,11 @@ Marking classes or members as `final` in tutorials can distract from the main to
 
 ```swift
 // Turn any generic type into a reference type using this Box class.
-final class Box<T> {
+final class Box<T> 
+{
   let value: T
-  init(_ value: T) {
+  init(_ value: T) 
+  {
     self.value = value
   }
 }
@@ -450,7 +476,8 @@ final class Box<T> {
 Keep short function declarations on one line including the opening brace:
 
 ```swift
-func reticulateSplines(spline: [Double]) -> Bool {
+func reticulateSplines(spline: [Double]) -> Bool 
+{
   // reticulate code goes here
 }
 ```
@@ -462,7 +489,8 @@ func reticulateSplines(
   spline: [Double], 
   adjustmentFactor: Double,
   translateConstant: Int, comment: String
-) -> Bool {
+) -> Bool 
+{
   // reticulate code goes here
 }
 ```
@@ -472,7 +500,8 @@ Don't use `(Void)` to represent the lack of an input; simply use `()`. Use `Void
 **Preferred**:
 
 ```swift
-func updateConstraints() -> Void {
+func updateConstraints() -> Void 
+{
   // magic happens here
 }
 
@@ -482,7 +511,8 @@ typealias CompletionHandler = (result) -> Void
 **Not Preferred**:
 
 ```swift
-func updateConstraints() -> () {
+func updateConstraints() -> () 
+{
   // magic happens here
 }
 
@@ -513,11 +543,13 @@ Use trailing closure syntax only if there's a single closure expression paramete
 
 **Preferred**:
 ```swift
-UIView.animate(withDuration: 1.0) {
+UIView.animate(withDuration: 1.0) 
+{
   self.myView.alpha = 0
 }
 
-UIView.animate(withDuration: 1.0, animations: {
+UIView.animate(withDuration: 1.0, animations: 
+{
   self.myView.alpha = 0
 }, completion: { finished in
   self.myView.removeFromSuperview()
@@ -526,11 +558,13 @@ UIView.animate(withDuration: 1.0, animations: {
 
 **Not Preferred**:
 ```swift
-UIView.animate(withDuration: 1.0, animations: {
+UIView.animate(withDuration: 1.0, animations: 
+{
   self.myView.alpha = 0
 })
 
-UIView.animate(withDuration: 1.0, animations: {
+UIView.animate(withDuration: 1.0, animations: 
+{
   self.myView.alpha = 0
 }) { f in
   self.myView.removeFromSuperview()
@@ -590,7 +624,8 @@ You can define constants on a type rather than on an instance of that type using
 
 **Preferred**:
 ```swift
-enum Math {
+enum Math 
+{
   static let e = 2.718281828459045235360287
   static let root2 = 1.41421356237309504880168872
 }
@@ -642,12 +677,15 @@ var subview: UIView?
 var volume: Double?
 
 // later on...
-if let subview = subview, let volume = volume {
+if let subview = subview, let volume = volume 
+{
   // do something with unwrapped subview and volume
 }
 
 // another example
-UIView.animate(withDuration: 2.0) { [weak self] in
+UIView.animate(withDuration: 2.0) 
+{ 
+  [weak self] in
   guard let self = self else { return }
   self.alpha = 1.0
 }
@@ -658,14 +696,18 @@ UIView.animate(withDuration: 2.0) { [weak self] in
 var optionalSubview: UIView?
 var volume: Double?
 
-if let unwrappedSubview = optionalSubview {
-  if let realVolume = volume {
+if let unwrappedSubview = optionalSubview 
+{
+  if let realVolume = volume 
+  {
     // do something with unwrappedSubview and realVolume
   }
 }
 
 // another example
-UIView.animate(withDuration: 2.0) { [weak self] in
+UIView.animate(withDuration: 2.0) 
+{ 
+ [weak self] in
   guard let strongSelf = self else { return }
   strongSelf.alpha = 1.0
 }
@@ -678,7 +720,8 @@ Consider using lazy initialization for finer grained control over object lifetim
 ```swift
 lazy var locationManager = makeLocationManager()
 
-private func makeLocationManager() -> CLLocationManager {
+private func makeLocationManager() -> CLLocationManager 
+{
   let manager = CLLocationManager()
   manager.desiredAccuracy = kCLLocationAccuracyBest
   manager.delegate = self
@@ -821,7 +864,8 @@ Use access control as the leading property specifier. The only things that shoul
 ```swift
 private let message = "Great Scott!"
 
-class TimeMachine {  
+class TimeMachine 
+{  
   private dynamic lazy var fluxCapacitor = FluxCapacitor()
 }
 ```
@@ -830,7 +874,8 @@ class TimeMachine {
 ```swift
 fileprivate let message = "Great Scott!"
 
-class TimeMachine {  
+class TimeMachine 
+{  
   lazy dynamic private var fluxCapacitor = FluxCapacitor()
 }
 ```
@@ -841,19 +886,23 @@ Prefer the `for-in` style of `for` loop over the `while-condition-increment` sty
 
 **Preferred**:
 ```swift
-for _ in 0..<3 {
+for _ in 0..<3 
+{
   print("Hello three times")
 }
 
-for (index, person) in attendeeList.enumerated() {
+for (index, person) in attendeeList.enumerated() 
+{
   print("\(person) is at position #\(index)")
 }
 
-for index in stride(from: 0, to: items.count, by: 2) {
+for index in stride(from: 0, to: items.count, by: 2) 
+{
   print(index)
 }
 
-for index in (0...3).reversed() {
+for index in (0...3).reversed() 
+{
   print(index)
 }
 ```
@@ -861,14 +910,16 @@ for index in (0...3).reversed() {
 **Not Preferred**:
 ```swift
 var i = 0
-while i < 3 {
+while i < 3 
+{
   print("Hello three times")
   i += 1
 }
 
 
 var i = 0
-while i < attendeeList.count {
+while i < attendeeList.count 
+{
   let person = attendeeList[i]
   print("\(person) is at position #\(i)")
   i += 1
@@ -901,7 +952,8 @@ When coding with conditionals, the left-hand margin of the code should be the "g
 
 **Preferred**:
 ```swift
-func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
+func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
+{
 
   guard let context = context else {
     throw FFTError.noContext
@@ -917,17 +969,23 @@ func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
 
 **Not Preferred**:
 ```swift
-func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies {
-
-  if let context = context {
-    if let inputData = inputData {
+func computeFFT(context: Context?, inputData: InputData?) throws -> Frequencies 
+{
+  if let context = context 
+  {
+    if let inputData = inputData 
+    {
       // use context and input to compute the frequencies
 
       return frequencies
-    } else {
+    } 
+    else 
+    {
       throw FFTError.noInputData
     }
-  } else {
+  } 
+  else 
+  {
     throw FFTError.noContext
   }
 }
@@ -992,14 +1050,16 @@ Parentheses around conditionals are not required and should be omitted.
 
 **Preferred**:
 ```swift
-if name == "Hello" {
+if name == "Hello" 
+{
   print("World")
 }
 ```
 
 **Not Preferred**:
 ```swift
-if (name == "Hello") {
+if (name == "Hello") 
+{
   print("World")
 }
 ```
@@ -1054,7 +1114,7 @@ Do not use emoji in your projects. For those readers who actually type in their 
 
 ## Organization and Bundle Identifier
 
-Where an Xcode project is involved, the organization should be set to `Ray Wenderlich` and the Bundle Identifier set to `com.raywenderlich.TutorialName` where `TutorialName` is the name of the tutorial project.
+Where an Xcode project is involved, the organization should be set to `Catapult Sports` and the Bundle Identifier set to `com.catapultsports.TutorialName` where `TutorialName` is the name of the tutorial project.
 
 ![Xcode Project settings](screens/project_settings.png)
 
