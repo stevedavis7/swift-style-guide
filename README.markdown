@@ -2,9 +2,13 @@
 
 This style guide outlines the coding conventions for Catapult Sports Vision, based on raywenderlich.com.
 
-This style guide is different from others you may see, because the focus is centered on readability for print and the web. We created this style guide to keep the code in our books, tutorials, and starter kits nice and consistent — even though we have many different authors working on the books.
+## Introduction
 
-Our overarching goals are clarity, consistency and brevity, in that order.
+The reason we made this style guide was so that we could keep the code nice and consistent - even though we have many different developers working on the project.
+
+## Credits
+
+Created by Steve Davis with minor changes to the raywenderlich.com style guide
 
 ## Table of Contents
 
@@ -291,12 +295,12 @@ var deviceModels: [String]
 
 ## Spacing
 
-* Indent using 2 spaces rather than tabs to conserve space and help prevent line wrapping. Be sure to set this preference in Xcode and in the Project settings as shown below:
+* Indent using 4 spaces which is the XCode default. 
 
 ![Xcode indent settings](screens/indentation.png)
 
 * Method braces and other braces (`if`/`else`/`switch`/`while` etc.) always open on the next line after statement and close on a new line.
-* Tip: You can re-indent by selecting some code (or **Command-A** to select all) and then **Control-I** (or **Editor ▸ Structure ▸ Re-Indent** in the menu). Some of the Xcode template code will have 4-space tabs hard coded, so this is a good way to fix that.
+* Tip: You can re-indent by selecting some code (or **Command-A** to select all) and then **Control-I** (or **Editor ▸ Structure ▸ Re-Indent** in the menu). 
 
 **Preferred**:
 ```swift
