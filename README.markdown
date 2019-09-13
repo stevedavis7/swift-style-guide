@@ -1,5 +1,6 @@
-# The Official raywenderlich.com Swift Style Guide.
-### Updated for Swift 4.2
+# The official Catapult Sports Swift style guide for Vision
+
+This style guide outlines the coding conventions for Catapult Sports Vision, based on raywenderlich.com.
 
 This style guide is different from others you may see, because the focus is centered on readability for print and the web. We created this style guide to keep the code in our books, tutorials, and starter kits nice and consistent — even though we have many different authors working on the books.
 
